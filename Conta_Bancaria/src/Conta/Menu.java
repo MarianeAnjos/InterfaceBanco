@@ -1,46 +1,29 @@
 package Conta;
 
 import java.util.Scanner;
-import Conta.model.Conta;
-import Conta.util.Cores;
+
 import Conta.model.ContaCorrente;
 import Conta.model.ContaPoupanca;
+import Conta.util.Cores;
 
 public class Menu {
+
+	public static Scanner leia = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 
-// Teste da Classe conta
-		
-		Conta cliente1 = new Conta (1, 123, 1, "Mariane", 9000.0f);
-		cliente1.visualizar();
-		cliente1.sacar(92000.0f);
-		cliente1.visualizar();
-		cliente1.depositar(5000.0f);
-		cliente1.visualizar();
-		
-// teste da Classe Conta corrente 
-		
-		Conta cliCor = new ContaCorrente(2, 123, 1, "Mariane", 95000.0f, 1000.0f); 
-		cliCor.visualizar();
-		cliCor.sacar(12000.0f);
-		cliCor.visualizar();
-		cliCor.depositar(5000.0f);
-		cliCor.visualizar();
-		
-// teste da classe conta poupança
-		Conta CliPoup = new Conta(3, 123, 2, "Leona", 15);
-		CliPoup.visualizar();
-		CliPoup.sacar(12000.0f);
-		CliPoup.visualizar();
-		CliPoup.depositar(5000.0f);
-		CliPoup.visualizar();
-		
-		Scanner leia = new Scanner(System.in);
-		
 		int opcao;
-				
-		while(true) {
-
+		
+        // Teste da Classe Conta Poupança
+		ContaPoupanca cp1 = new ContaPoupanca(2, 123, 2, "Leona", 90000.0f, 15);
+		cp1.visualizar();
+        cp1.sacar(1000.0f);
+		cp1.visualizar();
+		cp1.depositar(5000.0f);
+		cp1.visualizar();
+		
+		while (true) {
+			
 			System.out.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND
 					+ "╔***************************************************╗");
 			System.out.println("*                                                   *");
@@ -63,51 +46,51 @@ public class Menu {
 			System.out.println("                                                     " + Cores.TEXT_RESET);
 			
 			opcao = leia.nextInt();
-				
-			if (opcao == 9) {
-				System.out.println(Cores.TEXT_WHITE_BOLD + "\n Banco do Brazil com Z - O seu Futuro começa aqui!");
+			
+			if(opcao == 9) {
+				System.out.println("\nBanco do Brazil com Z - O seu futuro começa aqui!");
 				leia.close();
 				System.exit(0);
 			}
+			
+			switch(opcao) {
+			case 1:
+				System.out.println("\n Criar Conta");
 				
-			switch (opcao) {
-				case 1:
-					System.out.println(Cores.TEXT_WHITE + "Criar Conta\n\n");
+                 break;
+			case 2:
+				System.out.println("\n Listar todas as Contas");
 				
-                    break;
-				case 2:
-					System.out.println(Cores.TEXT_WHITE + "Listar todas as Contas\n\n");
-					
-                    break;
-				case 3:
-					System.out.println(Cores.TEXT_WHITE + "Consultar dados da Conta - por número\n\n");
-	
-                    break;
-				case 4:
-					System.out.println(Cores.TEXT_WHITE + "Atualizar dados da Conta\n\n");
-					
-                    break;
-				case 5:
-					System.out.println(Cores.TEXT_WHITE + "Apagar a Conta\n\n");
-		
-                    break;
-				case 6:
-					System.out.println(Cores.TEXT_WHITE + "Saque\n\n");
-
-                    break;
-				case 7:
-					System.out.println(Cores.TEXT_WHITE + "Depósito\n\n");
-					
-                    break;
-				case 8:
-					System.out.println(Cores.TEXT_WHITE + "Transferência entre Contas\n\n");
-					
-                    break;
-				default:
-					System.out.println(Cores.TEXT_RED_BOLD + "\n Opção Inválida! \n" + Cores.TEXT_RESET);
-                    break;
+                 break;
+			case 3:
+				System.out.println("\n Buscar Conta por número");
+				
+				break;
+			case 4:
+				System.out.println("\n Atualizar dados da Conta");
+				
+                 break;
+			case 5:
+				System.out.println("\n Apagar Conta");
+				
+                 break;
+			case 6:
+				System.out.println("\n Sacar");
+				
+				break;
+             case 7:
+				System.out.println("\n Depositar");
+				
+				break;
+             case 8:
+				System.out.println("\n Transferir");
+				
+				break;
+			default:
+				System.out.println("\nOpção Inválida");
+                 break;
 			}
-		}	
+        }
 	}
 
 }
