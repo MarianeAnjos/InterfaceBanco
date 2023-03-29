@@ -101,5 +101,8 @@ public abstract class Conta {
 			System.out.println("Titular: " + this.titular);
 			System.out.println("Saldo: " + this.saldo);
 		}
+
+
+		protected abstract void listarTodas();
 	
 }
