@@ -18,9 +18,9 @@ public class Menu {
 	public static void main(String[] args) {
 		ContaController contas = new ContaController();
 		
-		int  opcao, numero, agencia, tipo, aniversario = 0;
+		int  opcao, numero, agencia, tipo, aniversario ,numeroDestino;
 		String titular;
-		float saldo, limite = 0;
+		float saldo, limite, valor;
 	
 
 		while (true) {
@@ -62,7 +62,7 @@ public class Menu {
 
 			switch (opcao) {
 			case 1:
-				System.out.println(Cores.TEXT_WHITE+"\n Criar Conta");
+				System.out.println(Cores.TEXT_BLUE+"\n Criar Conta");
 
 				System.out.println(Cores.TEXT_WHITE+"\n Digite o numero da Agência: ");
 				agencia = leia.nextInt();
@@ -148,32 +148,45 @@ public class Menu {
 				
 				
 			case 5:
-				System.out.println(Cores.TEXT_WHITE+"\n Apagar Conta");
+				System.out.println(Cores.TEXT_RED+" Apagar Conta");
 				
-				System.out.println("Digite o número da conta");
+				System.out.println(Cores.TEXT_WHITE+"\nDigite o número da conta ");
 				numero = leia.nextInt();
 				
 				contas.deletar(numero);
 				
 				keyPress();
 				break;
+				
 			case 6:
-				System.out.println("\n Sacar");
-
+				System.out.println("Saque\n\n");
+				
+				System.out.println("Digite o número da conta: ");
+				numero = leia.nextInt();
+				
+				do {
+					System.out.println("Digite o valor do Saque (R$)");
+					valor = leia.nextFloat();
+				} while(valor <=0);
+				
+				contas.sacar(numero, valor);
 				keyPress();
 				break;
+				
 			case 7:
-				System.out.println("\n Depositar");
+				System.out.println(Cores.TEXT_GREEN+"Depositar\n\n");
 
 				keyPress();
+				
 				break;
 			case 8:
-				System.out.println("\n Transferir");
+				System.out.println("Transferir\n\n");
 
 				keyPress();
 				break;
+				
 			default:
-				System.out.println("\nOpção Inválida" + Cores.TEXT_RESET);
+				System.out.println(Cores.TEXT_RED+"\nOpção Inválida" + Cores.TEXT_RESET);
 				
 				keyPress();
 				break;
