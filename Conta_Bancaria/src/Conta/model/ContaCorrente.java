@@ -32,4 +32,10 @@ public class ContaCorrente extends Conta{
 		super.visualizar();
 		System.out.println("\n Limite de crédito: "+this.limite);
 	}
+
+	@Override
+	protected void listarTodas() {
+		// TODO Auto-generated method stub
+		
+	}
 }

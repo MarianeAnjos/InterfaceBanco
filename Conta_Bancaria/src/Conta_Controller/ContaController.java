@@ -1,16 +1,16 @@
 package Conta_Controller;
 
-import Conta.model.Conta;
+import Conta.model.Conta; 
 import Conta.repository.ContaRepository;
 import java.util.ArrayList;
 import Conta.model.Conta;
 
 
+@SuppressWarnings("unused")
 public class ContaController implements ContaRepository {
-
 	int numero = 0;
 	private ArrayList<Conta> listaContas = new ArrayList<Conta>();
-	
+
 	@Override
 	
 	public void listarTodas() {
@@ -21,7 +21,12 @@ public class ContaController implements ContaRepository {
 	
 	@Override
 	public void procurarPorNumero(int numero) {
-		// TODO Auto-generated method stub
+		var Conta = buscarNaCollection(numero);
+		
+		if (Conta != null)
+			Conta.visualizar();
+		else
+			System.out.println("\n A conta número: "+numero+" não foi criada");
 		
 	}
 
@@ -34,15 +39,27 @@ public class ContaController implements ContaRepository {
 
 	@Override
 	public void atualizar(Conta conta) {
-		// TODO Auto-generated method stub
-		
-	}
+			var buscaConta = buscarNaCollection(conta.getNumero());
+			
+			if (buscaConta != null) {
+				listaContas.set(listaContas.indexOf(buscaConta), conta);
+				System.out.println("n A conta número: "+conta.getNumero()+" foi atualizada com sucesso!" );
+			} else 
+				System.out.println("\n A Conta número: "+ conta.getNumero()+" não foi encontrada!");
+		}
 
 	@Override
 	public void deletar(int numero) {
-		// TODO Auto-generated method stub
+			var conta = buscarNaCollection(numero);
+			
+			if (conta != null ) {
+				if(listaContas.remove(conta) == true)
+					System.out.println("\n A conta numero: "+ numero+" foi deletada com suesso! ");
+			} else 
+				System.out.println("\n A conta numero: "+ numero+" não foi encontrada! ");
+		}
 		
-	}
+	
 
 	@Override
 	public void sacar(int numero, float valor) {
@@ -62,9 +79,27 @@ public class ContaController implements ContaRepository {
 		
 		
 	}
-
+	
 	public int gerarNumero() {
 		return ++ numero;
 	}
+	
+	public Conta buscarNaCollection(int numro) {
+		for( var Conta : listaContas) {
+			if (Conta.getNumero() == numero) {
+				return Conta;
+			}
+		}
+		return null;
+	}
+	
+	public int retornaTipo(int numero) {
+		for( var conta : listaContas) {
+			if(conta.getNumero() == numero){
+				return conta.getTipo();
+			}
+		}
+		return 0;
+	} 
 	
 }

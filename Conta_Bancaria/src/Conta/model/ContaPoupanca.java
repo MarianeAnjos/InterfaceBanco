@@ -22,5 +22,11 @@ public class ContaPoupanca extends Conta{
 		super.visualizar();
 		System.out.println("Aniversário da conta: " + this.aniversario);
 	}
+
+	@Override
+	protected void listarTodas() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
