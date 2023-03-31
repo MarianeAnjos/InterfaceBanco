@@ -1,6 +1,7 @@
 package Conta;
 
 import java.io.IOException; 
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -114,7 +115,7 @@ public class Menu {
 				numero = leia.nextInt();
 				
 				if(contas.buscarNaCollection(numero)!= null) {
-					System.out.println("Digite o nome da Agência: ");
+					System.out.println("Digite o numero da Agência: ");
 					agencia = leia.nextInt();
 					System.out.println("Difite o nome do Titular: ");
 					leia.skip("\\R?");
@@ -175,7 +176,16 @@ public class Menu {
 				
 			case 7:
 				System.out.println(Cores.TEXT_GREEN+"Depositar\n\n");
-
+				
+				System.out.println("Digite o Numero da conta: ");
+				numero = leia.nextInt();
+				
+				do {
+					System.out.println("Digite o valor do depósiti (R$): ");
+					valor = leia.nextFloat();
+				}while (valor <= 0);
+				
+				contas.depositar(numero, valor);
 				keyPress();
 				
 				break;
@@ -205,6 +215,8 @@ public class Menu {
 
 			System.out.println("Você pressionou uma tecla diferente de enter!");
 
+		} catch(Exception e2) {
+			System.out.println("Opção invalida");
 		}
 	}
 }
