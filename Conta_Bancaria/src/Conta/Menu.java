@@ -190,8 +190,20 @@ public class Menu {
 				
 				break;
 			case 8:
-				System.out.println("Transferir\n\n");
-
+				System.out.println(Cores.TEXT_WHITE+"Transferir\n\n");
+				
+				System.out.println("Digite o Numero da conta de origem: ");
+				numero = leia.nextInt();
+				System.out.println("Digite o Numero da conta de destino: ");
+				numeroDestino = leia.nextInt();
+				
+				do {
+					System.out.println("Digite o valor da tranferência (R$): ");
+					valor = leia.nextFloat();
+					
+				}while(valor <= 0);
+				
+				contas.transferir(numero, numeroDestino, valor);
 				keyPress();
 				break;
 				
